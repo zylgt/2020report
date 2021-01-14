@@ -223,8 +223,13 @@
                         }
 			        },
 					mounted:function(){
-                        // alert(document.documentElement.clientWidth)
-                        // alert(document.documentElement.clientHeight)
+                        var d_width = document.documentElement.clientWidth
+                        var d_height = document.documentElement.clientHeight
+                        if(d_width/d_height >375/667 ){
+                            $('.page_bg').css({'width':"100%"})
+                        }else{
+                            $('.page_bg').css({'height':"100%",'width':'auto'})
+                        }
                         $('.click_btn').click(function(){
                             $('.page1').hide()
                             $('.page_box').show()
@@ -232,17 +237,17 @@
                         $('.again_btn').click(function(){
                             mySwiper.slideTo(0, 1, false);
                         })
-                        // 开始播放音乐
+                        // 暂停音乐
                         $('.music_play').click(function(){
                             $('.music_pause').show()
                             $('.music_play').hide()
-                            $('#playMusic')[0].play()
+                            $('#playMusic')[0].pause()
                         })
-                        // 暂停音乐
+                        // 播放音乐
                         $('.music_pause').click(function(){
                             $('.music_play').show()
                             $('.music_pause').hide()
-                            $('#playMusic')[0].pause()
+                            $('#playMusic')[0].play()
                         })
                         $('.share_btn').click(function(){
                             $('.mask').show()
