@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <!-- 强制显示方式 -->
+      <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, ,user-scalable=no,user-scalable=0,minimal-ui">
+      <!-- 允许全屏 -->
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <!-- 顶端状态条样式 -->
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <!-- 忽略将数字变为电话号码 -->
+      <meta content="telephone=no" name="format-detection">
+      <!-- uc强制竖屏 -->
+      <meta name="screen-orientation" content="portrait">
+      <!-- qq强制竖屏 -->
+      <meta name="x5-orientation" content="portrait">
+      <!-- uc强制全屏 -->
+      <meta name="full-screen" content="yes">
+      <!-- qq强制全屏 -->
+      <meta name="x5-fullscreen" content="true">
+      <!-- uc应用模式 -->
+      <meta name="browsermode" content="application">
+      <!-- qq应用模式 -->
+      <meta name="x5-page-mode" content="app">
+      <!-- windows phone 点击无高光 -->
+      <meta name="msapplication-tap-highlight" content="no">
+  
+      <meta name="format-detection" content="telephone=yes"/>
+    <title>我的年度报告</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!-- 音乐按钮 -->
+    <div class='music'>
+        <img src="img/play.png" alt="" class='music_play music_img' >
+        <img src="img/pause.png" alt="" class='music_pause music_img'>
+        <audio preload="load" id="playMusic" src="Summer.mp3"  hidden loop="loop"></audio>
+    </div>
+
+    <!-- 第一屏 -->
+    <div class='page page1'>
+        <img src="img/1-1.jpg" alt="" class='page_bg' >
+        <div class='click_btn'></div>
+    </div>
+
+    <!-- 滑动页面 -->
+    <div class='swiper-container  page_box page' id='vue' >
+        <div class="swiper-wrapper">
+            <div class="swiper-slide page2">
+                <img src="img/1-2.jpg" alt="" class='page_bg' >
+                <div class='cont'>
+                    {{info.first_measure_time}}<br/>
+                    你第一次使用爱家康APP<br/>
+                    测量的血压是 <span class='cont_label'>{{info.first_measure_lp}}/{{info.first_measure_hp}}</span> ,<br/>
+                    心率是 <span class='cont_label'>{{info.first_measure_hr}}</span><br/>
+                    <br/>
+                    与你的第一次相遇，<br/>
+                    是我们守护健康的开始。
+                </div>
+            </div>
+            <div class="swiper-slide page3">
+                <img src="img/1-3.jpg" alt="" class='page_bg' >
+                <div class='cont '>
+                    2020年,<br/>
+                    你用爱家康APP测量<span class='cont_label'>{{info.t_measure_times}}</span> 次， <br/>
+                    其中，理想血压 <span class='cont_label'>{{info.t_health_times}}</span> 次<br/>
+                    历史上你用爱家康APP测量<span class='cont_label'>{{info.history_measure_times}}</span>次，<br/>
+                    其中，理想血压 <span class='cont_label'>{{info.history_health_times}}</span> 次<br/>
+                    <br/>
+                    如果“鸭梨山大”，<br/>
+                    不如放个大假，<br/>
+                    生活还有诗和远方
+                </div>
+            </div>
+            <div class="swiper-slide page4">
+                <img src="img/1-4.jpg" alt="" class='page_bg' >
+                <div class='conts '>
+                    {{info.highest_date}},<br/>
+                    你测出当年最高血压<span class='cont_label'>{{info.highest_value}}</span>  <br/>
+                    {{info.lowest_date}},<br/>
+                    你测出当年最低血压<span class='cont_label'>{{info.lowest_value}}</span>  <br/>
+                    {{info.highest_hr_date}},<br/>
+                    你测出当年最高心率<span class='cont_label'>{{info.highest_hr_value}}</span>  <br/>
+                    {{info.lowest_hr_date}},<br/>
+                    你测出当年最低心率<span class='cont_label'>{{info.lowest_hr_value}}</span>  <br/>
+                    <br/>
+                    看似不经意的一次测量，<br/>
+                    很可能是健康的关键时刻
+                </div>
+            </div>
+            <div class="swiper-slide page5">
+                <img src="img/1-5.jpg" alt="" class='page_bg' >
+                <div class='conts '>
+                    2020,<br/>
+                    你一天中<span class='cont_label'>{{info.good_at}}</span>的血压最为理想，<br/>
+                    而<span class='cont_label'>{{info.bad_at}}</span>血压需要关注<br/>
+                    2020<span class='cont_label'>{{info.season_good_at}}</span>你的血压最为理想，<br/>
+                    而<span class='cont_label'>{{info.season_bad_at}}</span>你的血压需要关注<br/>
+                    <br/>
+                    寒来暑往，三餐四季，<br/>
+                    拥有“健康自由”，<br/>
+                    才是令人向往的生活
+                </div>
+            </div>
+            <div class="swiper-slide page6">
+                <img src="img/1-6.jpg" alt="" class='page_bg' >
+                <div class='conts '>
+                    你通过爱家康APP把健康状况分享给亲友<span class='cont_label'>80</span>次，
+                    共有{{info.friends_count}}位伙伴和你一起在爱家康APP记录健康，在<span class='cont_label'>河北</span>省，就有
+                    <span class='cont_label'>6988</span>位，其中，你的健康排名是 <span class='cont_label'>{{info.t_order}}</span>
+                    位（以测出理想血压的次数排名）。和2020年之前相比，
+                    <span v-if='info.desc>0' >
+                        你的排名上升了<span class='cont_label'>{{info.desc}}</span>名。
+                    </span>
+                    <span v-else>
+                        你的排名下降了<span class='cont_label'>{{info.desc}}</span>名。
+                    </span>
+                    <br/><br/>
+                    保持健康从不是你一个人的战斗，不论是目标达成的喜悦，亦或是遇到困难的迷茫，只要你需要，我们随时都在。
+                </div>
+              
+            </div>
+            <div class="swiper-slide page7">
+                <img src="img/1-7.jpg" alt="" class='page_bg' >
+                <div class='conts '>
+                    2020,你的平均血压是<br/>
+                    <span class='cont_label'>{{info.t_avg_lp}}/{{info.t_avg_hp}}</span>，心率是<span class='cont_label'>{{info.t_avg_hr}}</span>  <br/>
+                    历史上,你的平均血压是<br/>
+                    <span class='cont_label'>{{info.history_avg_lp}}/{{info.history_avg_hp}}</span>，心率是<span class='cont_label'>{{info.history_avg_hr}}</span>  <br/>
+                    <br/>
+                    所以，在2021年，<br/>
+                    <span class='cont_label'>{{info.t_content}}</span><br/>
+                    新的一年，健康出发！
+                </div>
+                <div class='again_btn' >
+                    <img src="img/again.png" alt="" class='again_img' >
+                </div>
+                <div class='share_btn ' >
+                    <img src="img/sahre.png" alt="" class='share_img' >
+                </div>
+            </div>
+        </div>
+        <img src="img/next.png" alt="" class='next_img' >
+    </div>
+
+    <!-- 分享框 -->
+    <div class='mask'>
+        <img src="img/share_img.png" alt="" class='share_mask_img'>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript"
+    src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script src='js/rem.js' ></script>
+    <script src="js/vue.js"></script>
+    <script type="text/javascript" src="js/swiper.min.js"></script>
+    <script>
+        new Vue({
+			       el: "#vue",
+			        data: {
+                        info:'',
+                        musci_flag:false,
+                        share_flag:false,
+                        conclusion : [
+                            '低盐，低脂肪饮食；禁烟，酒，避免情绪激动；在医生指导下选择服用降压药，并每天定时监测血压情况, ',
+                            '低盐，低脂肪饮食；禁烟，酒，避免情绪激动；在医生指导下选择服用降压药，并每天定时监测血压情况, ',
+                            '注意改善生活习惯，饮食清淡少盐，避免辛辣刺激性的食物，多吃新鲜的蔬菜水果，戒烟酒，适当锻炼，多休息每天定时测血压，注意观察血压变化，随时就诊, ',
+                            '保持有规律的体力活动，改变久坐不动的生活方式；注意低盐低脂清单饮食，合理的作息时间；保持良好的情绪，减少烦恼心绪, ',
+                            '您的血压正常，请继续保持有规律的生活方式和健康的饮食习惯，新鲜的蔬菜和水果是保持血压正常的良品,比如芹菜、茄子等, ',
+                            "目前您的血压处于非常理想状态，请继续保持健康生活方式, "
+                        ]
+			        },
+			        methods: {
+						playerName:function(){
+                            this.musci_flag = !this.musci_flag
+                        },
+                        getData:function(date){
+                            let data1_1 = date.slice(0,4),
+                                data1_2 = date.slice(5,7),
+                                data1_3 = date.slice(8,10),
+                                data1_4 = date.slice(11,13);
+                            return data1_1 +'年'+data1_2+'月'+data1_3+'日'+data1_4+'时'
+                        },
+                        //处理血压等级
+                        //DIANum 平均低压   SYSNum 平均高压
+                        getPressureLevel:function(DIANum,SYSNum){
+                            let UnitDIA = 1;
+                            if (DIANum < 80){
+                                UnitDIA = 6;
+                            }else if(DIANum < 85 && DIANum >= 80){
+                                UnitDIA = 5;
+                            }else if (DIANum < 90 && DIANum >= 85){
+                                UnitDIA = 4;
+                            }else if (DIANum < 100 && DIANum >= 90){
+                                UnitDIA = 3;
+                            }else if (DIANum < 110 && DIANum >= 100){
+                                UnitDIA = 2;
+                            }else if (DIANum >= 110){
+                                UnitDIA = 1;
+                            }
+                            let UnitSYS = 1;
+                            if (SYSNum < 120){
+                                UnitSYS = 6;
+                            }else if (SYSNum < 130 && SYSNum >= 120){
+                                UnitSYS = 5;
+                            }else if (SYSNum < 140 && SYSNum >= 130){
+                                UnitSYS = 4;
+                            }else if (SYSNum < 160 && SYSNum >= 140){
+                                UnitSYS = 3;
+                            }else if (SYSNum < 180 && SYSNum >= 160){
+                                UnitSYS = 2;
+                            }else if (SYSNum >= 180){
+                                UnitSYS = 1;
+                            }
+                            let UnitWHO = 1;
+                            if (UnitDIA < UnitSYS){
+                                UnitWHO = UnitDIA;
+                            }else{
+                                UnitWHO = UnitSYS;
+                            }
+                            return UnitWHO;
+                        }
+			        },
+					mounted:function(){
+                        // alert(document.documentElement.clientWidth)
+                        // alert(document.documentElement.clientHeight)
+                        $('.click_btn').click(function(){
+                            $('.page1').hide()
+                            $('.page_box').show()
+                        })
+                        $('.again_btn').click(function(){
+                            mySwiper.slideTo(0, 1, false);
+                        })
+                        // 开始播放音乐
+                        $('.music_play').click(function(){
+                            $('.music_pause').show()
+                            $('.music_play').hide()
+                            $('#playMusic')[0].play()
+                        })
+                        // 暂停音乐
+                        $('.music_pause').click(function(){
+                            $('.music_play').show()
+                            $('.music_pause').hide()
+                            $('#playMusic')[0].pause()
+                        })
+                        $('.share_btn').click(function(){
+                            $('.mask').show()
+                        })
+                        $('.share_mask_img').click(function(){
+                            $('.mask').hide()
+                        })
+                        var mySwiper = new Swiper ('.swiper-container', {
+                            direction : 'vertical',
+                            speed:800,
+                        }) 
+                        var that = this
+
+                        // 数据请求
+						$.ajax({
+							type: "post",	//请求方式
+							async: false,
+							url: 'https://act.ihealthlabs.com.cn/actServer/activityNewYear2021/getDisplayData',
+							data: {"userId":3891277},
+							dataType: "json",
+							success: function (res) {
+                                if(res.code == 2000){
+                                    that.info = res.data
+                                    that.info.t_measure_times = res.data['2020_measure_times']
+                                    that.info.first_measure_time =  that.getData(res.data.first_measure_time)
+                                    that.info.highest_date =  that.getData(res.data.highest_date)
+                                    that.info.lowest_date =  that.getData(res.data.lowest_date)
+                                    that.info.highest_hr_date =  that.getData(res.data.highest_hr_date)
+                                    that.info.lowest_hr_date =  that.getData(res.data.lowest_hr_date)
+                                    that.info.t_health_times = res.data['2020_health_times']
+                                    that.info.t_order =  res.data['2020_order']
+                                    that.info.t_avg_hp = parseInt(res.data['2020_avg_hp']) 
+                                    that.info.t_avg_lp = parseInt(res.data['2020_avg_lp']) 
+                                    that.info.t_avg_hr = parseInt(res.data['2020_avg_hr']) 
+                                    that.info.history_avg_hp = parseInt(res.data['history_avg_hp']) 
+                                    that.info.history_avg_lp = parseInt(res.data['history_avg_lp']) 
+                                    that.info.history_avg_hr = parseInt(res.data['history_avg_hr']) 
+                                    that.info.desc = Number(res.data['2020_order']) - Number(res.data.history_order)
+                                    let conclusionIndex = that.getPressureLevel(Math.round(res.data['2020_avg_lp']),Math.round(res.data['2020_avg_hp']));
+                                    //that.info.t_content = that.conclusion[conclusionIndex-1]
+                                    that.info.t_content = that.conclusion[2]
+                                }
+							},
+                        });
+                        const requsetUrl = window.location.href.split("#")[0]
+                        // 微信分享请求
+                        $.ajax({
+                            type: "post",	//请求方式
+                            url : "https://wechat-pro.ihealthlabs.com.cn/gpbpapi/getJsSDKSign",
+                            data : {
+                                "url" : requsetUrl
+                            },
+                            dataType : "json",
+                            timeout : 5000,
+                            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                                if (textStatus == "timeout") { // 请求超时
+                                } else {
+                                }
+                            },
+                            success : function(data, textStatus) {
+                                if (textStatus == "success") { // 请求成功
+                                    wx.config({
+                                        debug : false,
+                                        appId : 'wxf1d48f4977403d48',
+                                        timestamp : data.timestamp,
+                                        nonceStr : data.nonceStr,
+                                        signature : data.signature,
+                                        jsApiList : ['updateAppMessageShareData',
+                                'updateTimelineShareData' ]
+                                    });
+                                }
+                            }
+                        });
+                       
+                        wx.ready(function(){
+                            var title = '我的2020血压健康报告'
+                            //分享给朋友
+                            wx.updateAppMessageShareData({
+                                title : title, // 分享标题
+                                desc : '谢谢你为我的健康一起努力，这是我们共同的成绩～科学控血压，全家都安心～20年血压报告单', // 分享描述
+                                link : 'http://wechat.natapp4.cc/index.html', // 分享链接
+                                imgUrl: "http://dmimg.5054399.com/allimg/pkm/pk/22.jpg",
+                                type : 'link', // 分享类型,music、video或link，不填默认为link
+                                success : function() {
+                                    // 用户确认分享后执行的回调函数
+                                },
+                                cancel : function() {
+                                    // 用户取消分享后执行的回调函数
+                                }
+                            });
+
+                            wx.updateTimelineShareData({
+                                title : title, // 分享标题
+                                desc : '谢谢你为我的健康一起努力，这是我们共同的成绩～科学控血压，全家都安心～20年血压报告单', // 分享描述
+                                link : 'http://wechat.natapp4.cc/index.html', // 分享链接
+                                imgUrl :"http://dmimg.5054399.com/allimg/pkm/pk/22.jpg", // 分享图标
+                                success : function() {
+                                    // 用户确认分享后执行的回调函数
+                                },
+                                cancel : function() {
+                                    // 用户取消分享后执行的回调函数
+                                }
+                            });
+                        })
+					}
+			   })
+
+    </script>
+</body>
+</html>
