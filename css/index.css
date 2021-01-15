@@ -21,7 +21,7 @@
         width:100%;
         height:100%;
     }
-    .music_pause{
+    .music_play{
         display: none;
     }
     .page{
@@ -90,7 +90,7 @@
     .page5 .conts{
         top:1.2rem;
         z-index:999;
-        width:4.4rem;
+        width:4.5rem;
         right:0;
         left:0;
         margin:0 auto;
@@ -158,7 +158,7 @@
         margin-top:2rem;
     }
     .page7 .conts{
-        font-size:0.26rem;
+        font-size:0.25rem;
     }
     @media (device-width: 375) and (device-height: 667px)  {
         .cont,.conts{
@@ -176,7 +176,6 @@
             font-size:7px;
         }
     }
-
     @media (min-height: 737px){
         /* .page_bg{
             width:auto;
@@ -186,7 +185,7 @@
             font-size: 0.32rem;
         }
         .page7 .conts{
-            font-size:0.26rem;
+            font-size:0.25rem;
         }
         .again_btn{
             position: absolute;
@@ -208,7 +207,7 @@
             font-size: 0.3rem;
         }
         .page7 .conts{
-            font-size:0.26rem;
+            font-size:0.25rem;
         }
     }
     @-webkit-keyframes fadeInDown {
