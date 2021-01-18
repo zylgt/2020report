@@ -52,8 +52,8 @@
                 <div class='cont'>
                     {{info.first_measure_time}}<br/>
                     你第一次使用爱家康APP<br/>
-                    测量的血压是 <span class='cont_label'>{{info.first_measure_lp}}/{{info.first_measure_hp}}</span> ,<br/>
-                    心率是 <span class='cont_label'>{{info.first_measure_hr}}</span><br/>
+                    测量的血压是 <span class='cont_label'>{{info.first_measure_lp}}/{{info.first_measure_hp}}</span> mmHg  ,<br/>
+                    心率是 <span class='cont_label'>{{info.first_measure_hr}}</span> 次/分钟 <br/>
                     <br/>
                     与你的第一次相遇，<br/>
                     是我们守护健康的开始。
@@ -77,13 +77,13 @@
                 <img src="img/1-4.jpg" alt="" class='page_bg' >
                 <div class='conts '>
                     {{info.highest_date}},<br/>
-                    你测出当年最高血压<span class='cont_label'>{{info.highest_value}}</span>  <br/>
+                    你测出当年最高血压 <span class='cont_label'>{{info.highest_value}}</span> mmHg  <br/>
                     {{info.lowest_date}},<br/>
-                    你测出当年最低血压<span class='cont_label'>{{info.lowest_value}}</span>  <br/>
+                    你测出当年最低血压 <span class='cont_label'>{{info.lowest_value}}</span> mmHg <br/>
                     {{info.highest_hr_date}},<br/>
-                    你测出当年最高心率<span class='cont_label'>{{info.highest_hr_value}}</span>  <br/>
+                    你测出当年最高心率 <span class='cont_label'>{{info.highest_hr_value}}</span> 次/分钟  <br/>
                     {{info.lowest_hr_date}},<br/>
-                    你测出当年最低心率<span class='cont_label'>{{info.lowest_hr_value}}</span>  <br/>
+                    你测出当年最低心率 <span class='cont_label'>{{info.lowest_hr_value}}</span> 次/分钟 <br/>
                     <br/>
                     看似不经意的一次测量，<br/>
                     很可能是健康的关键时刻
@@ -94,9 +94,11 @@
                 <div class='conts '>
                     2020,<br/>
                     你一天中<span class='cont_label'>{{info.good_at}}</span>的血压最为理想，<br/>
-                    而<span class='cont_label'>{{info.bad_at}}</span>血压需要关注<br/>
+                    <p v-if='info.good_at != info.bad_at'> 而
+                        <span class='cont_label' >{{info.bad_at}}</span>
+                        血压需要关注<br/></p> 
                     2020<span class='cont_label'>{{info.season_good_at}}</span>你的血压最为理想，<br/>
-                    而<span class='cont_label'>{{info.season_bad_at}}</span>你的血压需要关注<br/>
+                    而<span class='cont_label'  v-if='info.season_good_at != info.season_bad_at'>{{info.season_bad_at}}</span>你的血压需要关注<br/>
                     <br/>
                     寒来暑往，三餐四季，<br/>
                     拥有“健康自由”，<br/>
@@ -106,15 +108,14 @@
             <div class="swiper-slide page6">
                 <img src="img/1-6.jpg" alt="" class='page_bg' >
                 <div class='conts '>
-                    你通过爱家康APP把健康状况分享给亲友<span class='cont_label'>80</span>次，
-                    共有{{info.friends_count}}位伙伴和你一起在爱家康APP记录健康，在<span class='cont_label'>河北</span>省，就有
-                    <span class='cont_label'>6988</span>位，其中，你的健康排名是 <span class='cont_label'>{{info.t_order}}</span>
-                    位（以测出理想血压的次数排名）。和2020年之前相比，
+                    你通过爱家康APP把健康状况分享给亲友<span class='cont_label' v-if='info.share_times' >{{info.share_times}}</span> <span class='cont_label' v-else >0</span>次，
+                    共有{{info.friends_count}}位伙伴和你一起在爱家康APP记录健康，其中你的健康排名是 <span class='cont_label'>{{info.t_order}}</span>
+                    位。和2020年之前相比，
                     <span v-if='info.desc>0' >
                         你的排名上升了<span class='cont_label'>{{info.desc}}</span>名。
                     </span>
                     <span v-else>
-                        你的排名下降了<span class='cont_label'>{{info.desc}}</span>名。
+                        你的排名下降了<span class='cont_label'>{{-info.desc}}</span>名。
                     </span>
                     <br/><br/>
                     保持健康从不是你一个人的战斗，不论是目标达成的喜悦，亦或是遇到困难的迷茫，只要你需要，我们随时都在。
@@ -124,13 +125,9 @@
             <div class="swiper-slide page7">
                 <img src="img/1-7.jpg" alt="" class='page_bg' >
                 <div class='conts '>
-                    2020,你的平均血压是<br/>
-                    <span class='cont_label'>{{info.t_avg_lp}}/{{info.t_avg_hp}}</span>，心率是<span class='cont_label'>{{info.t_avg_hr}}</span>  <br/>
-                    历史上,你的平均血压是<br/>
-                    <span class='cont_label'>{{info.history_avg_lp}}/{{info.history_avg_hp}}</span>，心率是<span class='cont_label'>{{info.history_avg_hr}}</span>  <br/>
-                    <br/>
-                    所以，在2021年，<br/>
-                    <span class='cont_label'>{{info.t_content}}</span><br/>
+                    2020,你的平均血压是<span class='cont_label'>{{info.t_avg_lp}}/{{info.t_avg_hp}}</span> mmHg，心率是<span class='cont_label'>{{info.t_avg_hr}}</span>次/分钟  <br/>
+                    历史上,你的平均血压是<span class='cont_label'>{{info.history_avg_lp}}/{{info.history_avg_hp}}</span> mmHg，心率是<span class='cont_label'>{{info.history_avg_hr}}</span>次/分钟  <br/>
+                    所以，<span class='cont_label'>{{info.t_content}}</span><br/>
                     新的一年，健康出发！
                 </div>
                 <div class='again_btn' >
@@ -287,8 +284,11 @@
                                     that.info.history_avg_hr = parseInt(res.data['history_avg_hr']) 
                                     that.info.desc = Number(res.data['2020_order']) - Number(res.data.history_order)
                                     let conclusionIndex = that.getPressureLevel(Math.round(res.data['2020_avg_lp']),Math.round(res.data['2020_avg_hp']));
-                                    //that.info.t_content = that.conclusion[conclusionIndex-1]
+                                   // that.info.t_content = that.conclusion[conclusionIndex-1]
                                     that.info.t_content = that.conclusion[2]
+                                    if(!that.info.friends_count){
+                                        that.info.friends_count = 0
+                                    }
                                 }
 							},
                         });
