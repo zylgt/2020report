@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+      <meta charset="UTF-8">
       <!-- 强制显示方式 -->
       <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, ,user-scalable=no,user-scalable=0,minimal-ui">
       <!-- 允许全屏 -->
@@ -125,16 +125,17 @@
             <div class="swiper-slide page7">
                 <img src="img/1-7.jpg" alt="" class='page_bg' >
                 <div class='conts '>
-                    2020,你的平均血压是<span class='cont_label'>{{info.t_avg_lp}}/{{info.t_avg_hp}}</span> mmHg，心率是<span class='cont_label'>{{info.t_avg_hr}}</span>次/分钟  <br/>
-                    历史上,你的平均血压是<span class='cont_label'>{{info.history_avg_lp}}/{{info.history_avg_hp}}</span> mmHg，心率是<span class='cont_label'>{{info.history_avg_hr}}</span>次/分钟  <br/>
-                    所以，<span class='cont_label'>{{info.t_content}}</span><br/>
+                    2020,<br/>你的平均血压是<span class='cont_label'>{{info.t_avg_lp}}/{{info.t_avg_hp}}</span> mmHg，<br/>心率是<span class='cont_label'>{{info.t_avg_hr}}</span>次/分钟。 <br/>
+                    历史上,<br/>你的平均血压是<span class='cont_label'>{{info.history_avg_lp}}/{{info.history_avg_hp}}</span> mmHg，<br/>心率是<span class='cont_label'>{{info.history_avg_hr}}</span>次/分钟。  <br/>
+                    <br/>所以，你要 
+                    <span class='cont_label'>{{info.t_content}}</span><br/>
                     新的一年，健康出发！
                 </div>
                 <div class='again_btn' >
                     <img src="img/again.png" alt="" class='again_img' >
                 </div>
                 <div class='share_btn ' >
-                    <img src="img/sahre.png" alt="" class='share_img' >
+                    <img src="img/share.png" alt="" class='share_img' >
                 </div>
             </div>
         </div>
@@ -160,12 +161,12 @@
                         musci_flag:false,
                         share_flag:false,
                         conclusion : [
-                            '低盐，低脂肪饮食；禁烟，酒，避免情绪激动；在医生指导下选择服用降压药，并每天定时监测血压情况, ',
-                            '低盐，低脂肪饮食；禁烟，酒，避免情绪激动；在医生指导下选择服用降压药，并每天定时监测血压情况, ',
-                            '注意改善生活习惯，饮食清淡少盐，避免辛辣刺激性的食物，多吃新鲜的蔬菜水果，戒烟酒，适当锻炼，多休息每天定时测血压，注意观察血压变化，随时就诊, ',
-                            '保持有规律的体力活动，改变久坐不动的生活方式；注意低盐低脂清单饮食，合理的作息时间；保持良好的情绪，减少烦恼心绪, ',
-                            '您的血压正常，请继续保持有规律的生活方式和健康的饮食习惯，新鲜的蔬菜和水果是保持血压正常的良品,比如芹菜、茄子等, ',
-                            "目前您的血压处于非常理想状态，请继续保持健康生活方式, "
+                            '低盐低脂饮食；禁烟酒，避免情绪激动；遵医嘱服用降压药，每天定时监测血压',
+                            '低盐低脂饮食；禁烟酒，避免情绪激动；遵医嘱服用降压药，并每天定时监测血压',
+                            '注意改善生活习惯，饮食清淡，多吃新鲜蔬果，戒烟酒,适当锻炼。每天定时测血压并观察变化，随时就诊',
+                            '保持适当体育活动，拒绝久坐不动；低盐低脂饮食，合理作息，保持良好情绪',
+                            '继续保持健康的生活方式和饮食习惯，新鲜的蔬果是保持血压正常的良品,比如芹菜、茄子等',
+                            "目前您的血压处于非常理想状态，请继续保持健康生活方式"
                         ]
 			        },
 			        methods: {
@@ -285,7 +286,7 @@
                                     that.info.desc = Number(res.data['2020_order']) - Number(res.data.history_order)
                                     let conclusionIndex = that.getPressureLevel(Math.round(res.data['2020_avg_lp']),Math.round(res.data['2020_avg_hp']));
                                    // that.info.t_content = that.conclusion[conclusionIndex-1]
-                                    that.info.t_content = that.conclusion[2]
+                                    that.info.t_content = that.conclusion[4]
                                     if(!that.info.friends_count){
                                         that.info.friends_count = 0
                                     }
